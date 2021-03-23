@@ -9,7 +9,7 @@ private:
     int m_item_num;
     std::string m_description;
     std::string m_brand;
-    char m_type;
+    std::string m_type;
     std::string m_category;
     double m_cost;
     int m_quantity;
@@ -24,8 +24,8 @@ public:
     inline const std::string & get_description() const { return this->m_description; }
     inline void set_brand(const std::string & brand) { this->m_brand = brand; }
     inline const std::string & get_brand() const { return this->m_brand; }
-    inline void set_type(const char type) { this->m_type = type; }
-    inline char get_type() const { return this->m_type; }
+    inline void set_type(const std::string & type) { this->m_type = type; }
+    inline const std::string get_type() const { return this->m_type; }
     inline void set_category(const std::string & category) { this->m_category = category; }
     inline const std::string & get_category() const { return this->m_category; }
     inline void set_cost(const double cost) { this->m_cost = cost; }

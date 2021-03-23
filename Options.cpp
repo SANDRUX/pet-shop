@@ -63,9 +63,12 @@ bool Options::search_by_one_keyword(const std::string & keyword)
 {
     for (int i = 0; i < this->size; i++)
     {
+        const char * item_num = std::to_string(this->inventory[i].get_item_num()).c_str();
         const char * description = this->inventory[i].get_description().c_str();
         const char * brand = this->inventory[i].get_brand().c_str();
         const char * category = this->inventory[i].get_category().c_str();
+        const char * cost = std::to_string(this->inventory[i].get_cost()).c_str();
+        const char * quantity = std::to_string(this->inventory[i].get_quantity()).c_str();
         const char * sName = this->inventory[i].get_supplier_name().c_str();
         const char * contact = this->inventory[i].get_contact().c_str();
 
