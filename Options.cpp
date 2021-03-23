@@ -1,6 +1,7 @@
 #include "Options.hpp"
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 Options::Options() 
 {
@@ -16,6 +17,18 @@ Options::~Options()
     }
 }
 
+void Options::print(const Inventory * member)
+{
+    std::cout << member->get_item_num() << "\t";
+    std::cout << member->get_description() << "\t";
+    std::cout << member->get_brand() << "\t";
+    std::cout << member->get_type() << "\t";
+    std::cout << member->get_category() << "\t";
+    std::cout << member->get_cost() << "\t";
+    std::cout << member->get_quantity() << "\t";
+    std::cout << member->get_supplier_name() << "\t";
+    std::cout << member->get_contact() << std::endl;
+}
 
 void Options::list()
 {
@@ -27,9 +40,38 @@ void Options::list()
 
     for (int i = 0; i < this->size; i++)
     {
-        std::cout << inventory[i].get_item_num() << std::endl;
-        //TODO
-        
+        this->print(&(this->inventory[i]));
+    }       
+}
+
+bool Options::search_by_item_number(int item_num)
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        if (this->inventory[i].get_item_num() == item_num)
+        {
+            this->print(&(this->inventory[i]));
+
+            return true;
+        }
     }
-        
+
+    return false;
+}
+
+bool Options::search_by_one_keyword(const std::string & keyword)
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        const char * description = this->inventory[i].get_description().c_str();
+        const char * brand = this->inventory[i].get_brand().c_str();
+        const char * category = this->inventory[i].get_category().c_str();
+        const char * sName = this->inventory[i].get_supplier_name().c_str();
+        const char * contact = this->inventory[i].get_contact().c_str();
+
+        if (strstr(description, keyword.c_str()) != NULL || strstr(brand, keyword.c_str()) != NULL || strstr(category, keyword.c_str()) != NULL)
+        {
+            //TODO
+        }
+    }
 }
