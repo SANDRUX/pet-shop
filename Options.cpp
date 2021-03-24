@@ -17,7 +17,7 @@ Options::~Options()
     }
 }
 
-void Options::print(const Inventory * member)
+void Options::print(const Inventory * member) const
 {
     std::cout << member->get_item_num() << "\t";
     std::cout << member->get_description() << "\t";
@@ -30,7 +30,7 @@ void Options::print(const Inventory * member)
     std::cout << member->get_contact() << std::endl;
 }
 
-void Options::list()
+void Options::list() const
 {
     if (this->inventory == nullptr)
     {
@@ -44,7 +44,7 @@ void Options::list()
     }       
 }
 
-void Options::search_by_item_number(int item_num)
+void Options::search_by_item_number(int item_num) const
 {
     if (this->inventory == nullptr)
     {
@@ -66,7 +66,7 @@ void Options::search_by_item_number(int item_num)
     std::cout << "Not found!" << std::endl;
 }
 
-void Options::search_by_one_keyword(const std::string & keyword)
+void Options::search_by_one_keyword(const std::string & keyword) const
 {
     if (this->inventory == nullptr)
     {
