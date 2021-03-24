@@ -18,8 +18,8 @@ public:
     ~Options();
 
     void list();
-    bool search_by_item_number(int);
-    bool search_by_one_keyword(const std::string &);
+    void search_by_item_number(int);
+    void search_by_one_keyword(const std::string &);
     void show_low_inventories();
     void update();
     void add(const Inventory &);

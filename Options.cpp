@@ -44,23 +44,38 @@ void Options::list()
     }       
 }
 
-bool Options::search_by_item_number(int item_num)
+void Options::search_by_item_number(int item_num)
 {
+    if (this->inventory == nullptr)
+    {
+        std::cout << "Inventory is empty!" << std::endl;
+
+        return;
+    }
+
     for (int i = 0; i < this->size; i++)
     {
         if (this->inventory[i].get_item_num() == item_num)
         {
             this->print(&(this->inventory[i]));
 
-            return true;
+            return;
         }
     }
 
-    return false;
+    std::cout << "Not found!" << std::endl;
 }
 
-bool Options::search_by_one_keyword(const std::string & keyword)
+void Options::search_by_one_keyword(const std::string & keyword)
 {
+    if (this->inventory == nullptr)
+    {
+        std::cout << "Inventory is empty!" << std::endl;
+
+        return;
+    }
+
+
     for (int i = 0; i < this->size; i++)
     {
         const char * item_num = std::to_string(this->inventory[i].get_item_num()).c_str();
@@ -72,9 +87,15 @@ bool Options::search_by_one_keyword(const std::string & keyword)
         const char * sName = this->inventory[i].get_supplier_name().c_str();
         const char * contact = this->inventory[i].get_contact().c_str();
 
-        if (strstr(description, keyword.c_str()) != NULL || strstr(brand, keyword.c_str()) != NULL || strstr(category, keyword.c_str()) != NULL)
+        if (strstr(description, keyword.c_str()) != NULL || strstr(brand, keyword.c_str()) != NULL || strstr(category, keyword.c_str()) != NULL 
+        || strstr(item_num, keyword.c_str()) != NULL || strstr(cost, keyword.c_str()) != NULL || strstr(quantity, keyword.c_str()) != NULL)
         {
-            //TODO
+            this->print(&(this->inventory[i]));
+
+            return;
         }
     }
+
+    std::cout << "Not found!" << std::endl;
 }
+
